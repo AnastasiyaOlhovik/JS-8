@@ -11,7 +11,7 @@ const userData = {
 };
 
 
-populateFormVale();
+FormVale();
 
 
 form.addEventListener('input', throttle(onFormData, 500));
@@ -24,7 +24,7 @@ function onFormData(e) {
     localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 }
 
-function populateFormVale() {
+function FormVale() {
     const saveFormValue = JSON.parse(
         localStorage.getItem('feedback-form-state')
     );
