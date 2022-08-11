@@ -13,17 +13,6 @@ const userData = {
 
 FormVale();
 
-
-form.addEventListener('input', throttle(onFormData, 500));
-form.addEventListener('submit', onSubmitForm);
-
-
-
-function onFormData(e) {
-    userData[e.target.name] = e.target.value;
-    localStorage.setItem('feedback-form-state', JSON.stringify(userData));
-}
-
 function FormVale() {
     const saveFormValue = JSON.parse(
         localStorage.getItem('feedback-form-state')
@@ -38,16 +27,32 @@ function FormVale() {
     }
 }
 
-function onSubmitForm (e) {
+
+form.addEventListener('input', throttle((e) => {
+    userData[e.target.name] = e.target.value;
+
+    localStorage.setItem('feedback-form-state', JSON.stringify(userData));
+},500))
+
+
+form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
     if (userData.email === '' || userData.message === '') {
         return alert('All fields must be filled!');
-    }
-    userData.email = '';
-    userData.message = '';
+    } else {
 
-    e.currentTarget.reset();
-    localStorage.removeItem('feedback-form-state');
+        userData.email = '';
+        userData.message = '';
+
+        e.currentTarget.reset();
+
+        localStorage.removeItem('feedback-form-state');
+
+        console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
 }
+
+})
+
+
+
