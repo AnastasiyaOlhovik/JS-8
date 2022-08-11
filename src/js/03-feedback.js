@@ -51,7 +51,6 @@ form.addEventListener('submit', (e) => {
 
         console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
 }
-
 })
 
 
