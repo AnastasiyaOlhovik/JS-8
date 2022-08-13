@@ -36,8 +36,6 @@ function FormVale() {
 }
 
 
-
-
 form.addEventListener('input', throttle((e) => {
     userData[e.target.name] = e.target.value;
 
